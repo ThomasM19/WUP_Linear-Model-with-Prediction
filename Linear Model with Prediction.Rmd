@@ -10,6 +10,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
+# simple regression
+
+This is a template to serve as an example (cut and paste, change variable names)  
+we use the ucdavis1 dataset from the tigerstats package.
+
+```{r include=FALSE}
+require(tidyverse)
+require(tigerstats)
+require(rgl)
+require(knitr)
+
+```
+
 ## R Markdown
 
 Read about the data from the website where it is staged.  Then form three regression models; Model1 is SIMS~ARM, Model2 is SIMS~GRIP, and Model3 is SIMS~ARM+GRIP. For each model find a 95% prediction interval of SIMS given a value of 94  for GRIP and 88 for ARM. Compare Model1 with Model3 using anova. Write it up in a markdown document, push the project up to your github account and submit it back to canvas as link. 
@@ -30,4 +43,35 @@ You need to create a new github repo from scratch
 ```{r}
 data <- read.csv(file="https://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="",header=TRUE)  
 ```
+
+
+## Scatterplot
+```{r}
+plot(SIMS~GRIP,data=data)
+```
+
+##Now with ggplot - first select the basic data
+
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
+```
+
+##Now add in scatterplot
+
+```{r}
+basicNN + geom_point()
+```
+  
+# now add the model fit to our plot
+  
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+```  
+
+# Numerical results
+
+```{r}
+cor(SIMS~ARM,data=data)
+```
+
 
