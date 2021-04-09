@@ -20,7 +20,6 @@ require(tidyverse)
 require(tigerstats)
 require(rgl)
 require(knitr)
-
 ```
 
 ## R Markdown
@@ -44,31 +43,19 @@ You need to create a new github repo from scratch
 data <- read.csv(file="https://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="",header=TRUE)  
 ```
 
+# SIMS~ARM
 
 ## Scatterplot
-```{r}
-plot(SIMS~GRIP,data=data)
-```
-
-##Now with ggplot - first select the basic data
 
 ```{r}
 basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
 ```
 
-##Now add in scatterplot
-
-```{r}
-basicNN + geom_point()
-```
-  
-# now add the model fit to our plot
-  
 ```{r}
 basicNN + geom_point() + geom_smooth(method=lm)
 ```  
 
-# Numerical results
+### Numerical results
 
 ```{r}
 cor(SIMS~ARM,data=data)
@@ -81,7 +68,36 @@ model.1 <- lm(SIMS~ARM,data=data)
 summary.lm(model.1)
 ```
 
-Here is the equation of the blue line. The equation is: SIMS = -4.10 + ARM * 0.055. 
+The line equation is SIMS = -4.1 + 0.05 * ARM.
+The model suggests that r-squared is .467 and another metric is the residual standard error, is 1.226.
+
+### Prediction
+
+```{r}
+new <- data.frame(ARM = 88, GRIP = 94)
+```
+
+```{r}
+predict(model.1, new, interval = "prediction")
+```
+
+
+
+
+
+# SIMS~GRIP
+
+# SIMS~ARM+GRIP
+
+# Compare Model1 with Model3
+
+
+
+
+
+
+
+
 
 ## Prediction
 
