@@ -61,7 +61,7 @@ basicNN + geom_point() + geom_smooth(method=lm)
 cor(SIMS~ARM,data=data)
 ```
 
-# Inferential  (Build linear model)
+### Linear Model
   
 ```{r}
 model.1 <- lm(SIMS~ARM,data=data)
@@ -78,16 +78,44 @@ new <- data.frame(ARM = 88, GRIP = 94)
 ```
 
 ```{r}
-predict(model.1, new, interval = "prediction")
+predict(model.1, new, interval = "prediction", level = .95)
 ```
-
 
 
 
 
 # SIMS~GRIP
 
+### Scatterplot
+
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=GRIP))
+```
+
+```{r}
+basicNN +  geom_point() + geom_smooth(method=lm)
+```
+
+### Numerical results
+
+```{r}
+cor(SIMS~GRIP,data=data)
+```
+
+### Linear Model
+  
+```{r}
+model.1 <- lm(SIMS~GRIP,data=data)
+summary.lm(model.1)
+```
+
+
 # SIMS~ARM+GRIP
+
+
+
+
+
 
 # Compare Model1 with Model3
 
@@ -99,12 +127,6 @@ predict(model.1, new, interval = "prediction")
 
 
 
-## Prediction
-
-```{r}
-newdata <- data.frame(ARM = 88, GRIP = 94)
-predict(model.1, newdata = newdata, interval = "prediction")
-```
 
 
 
