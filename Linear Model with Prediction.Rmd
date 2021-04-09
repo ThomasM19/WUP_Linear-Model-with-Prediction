@@ -105,10 +105,18 @@ cor(SIMS~GRIP,data=data)
 ### Linear Model
   
 ```{r}
-model.1 <- lm(SIMS~GRIP,data=data)
-summary.lm(model.1)
+model.2 <- lm(SIMS~GRIP,data=data)
+summary.lm(model.2)
 ```
 
+The line equation is SIMS = -4.81 + 0.05 * GRIP
+The model suggests that r-squared is .467 and another metric is the residual standard error, is 1.295.
+
+### Prediction
+
+```{r}
+predict(model.2, new, interval = "prediction", level = .95)
+```
 
 # SIMS~ARM+GRIP
 
