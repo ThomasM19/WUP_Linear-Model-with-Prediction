@@ -74,4 +74,18 @@ basicNN + geom_point() + geom_smooth(method=lm)
 cor(SIMS~ARM,data=data)
 ```
 
+# Inferential  (Build linear model)
+  
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+```
+
+Here is the equation of the blue line. The equation is: SIMS = -4.10 + ARM * 0.055. 
+
+
+
+
+
+
 
