@@ -81,9 +81,6 @@ new <- data.frame(ARM = 88, GRIP = 94)
 predict(model.1, new, interval = "prediction", level = .95)
 ```
 
-
-
-
 # SIMS~GRIP
 
 ### Scatterplot
@@ -120,8 +117,29 @@ predict(model.2, new, interval = "prediction", level = .95)
 
 # SIMS~ARM+GRIP
 
+### Numerical results
+
+```{r}
+cor(SIMS~ARM+GRIP,data=data)
+```
+
+### Linear Model
+  
+```{r}
+model.3 <- lm(SIMS~ARM+GRIP,data=data)
+summary.lm(model.3)
+```
 
 
+### Prediction
+
+```{r}
+new <- data.frame(ARM = 88, GRIP = 94)
+```
+
+```{r}
+predict(model.3, new, interval = "prediction", level = .95)
+```
 
 
 
